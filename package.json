@@ -1,6 +1,6 @@
 {
   "name": "@spyna/react-store",
-  "version": "1.3.5",
+  "version": "1.0.0",
   "description": "React app state management that uses a shared storage",
   "author": "Spyna",
   "license": "MIT",
