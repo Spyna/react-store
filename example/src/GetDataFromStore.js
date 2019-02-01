@@ -1,8 +1,9 @@
 import React from 'react'
 
-import { withStore } from '@spyna/react-store'
+import { withStore } from 'spyna-react-store'
 
 class GetDataFromStore extends React.Component {
+  displayName = 'GetDataFromStore'
   state = { key: 'myStoreKey' }
   getFromStore = e => {
     e.preventDefault()
@@ -21,7 +22,7 @@ class GetDataFromStore extends React.Component {
     const value = this.props.store.get(key)
     return (
       <div className="component component5">
-        <h2>{this.constructor.name}.js</h2>
+        <h2>{this.GetDataFromStore}.js</h2>
         <p>get data from store</p>
         <form onSubmit={this.getFromStore}>
           key:{'  '}
