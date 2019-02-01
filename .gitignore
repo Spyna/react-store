@@ -1,0 +1,7 @@
+node_modules
+dist
+example/build
+example/node_modules
+coverage
+
+.attach_pi*
