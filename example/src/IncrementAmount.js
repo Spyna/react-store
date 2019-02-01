@@ -3,6 +3,7 @@ import React from 'react'
 import { withStore } from 'spyna-react-store'
 
 class IncrementAmount extends React.Component {
+  displayName = 'IncrementAmount'
   increment = () => {
     const { store } = this.props
     let amount = store.get('amount', 0) + 1
@@ -12,9 +13,11 @@ class IncrementAmount extends React.Component {
   render() {
     return (
       <div className="component component2">
-        <h2>{this.constructor.name}.js</h2>
+        <h2>{this.displayName}.js</h2>
         <button onClick={this.increment}>Increment</button>
-        <p>This component increments <strong>amount</strong> in store</p>
+        <p>
+          This component increments <strong>amount</strong> in store
+        </p>
       </div>
     )
   }

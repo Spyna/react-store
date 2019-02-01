@@ -2,7 +2,6 @@ import React from 'react'
 import Store, { storeHandler } from './Store'
 import StoreContext from './StoreContext'
 
-
 const createStore = (WrappedComponent, initialValue, config = {}) => {
   return class extends React.Component {
     state = {

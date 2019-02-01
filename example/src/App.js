@@ -11,28 +11,28 @@ import NotPermittedOperations from './NotPermittedOperations'
 class App extends Component {
   render() {
     return (
-        <div className="container">
-          <DisplayAmount />
-          <IncrementAmount />
-          <DecrementAmount />
-          <SetDataInStore />
-          <GetDataFromStore />
-          <NotPermittedOperations />
-        </div>
+      <div className="container">
+        <DisplayAmount />
+        <IncrementAmount />
+        <DecrementAmount />
+        <SetDataInStore />
+        <GetDataFromStore />
+        <NotPermittedOperations />
+      </div>
     )
   }
 }
 
 const initialValue = {
   amount: 15,
-  username : {
-    name : 'spyna',
-    url : 'https://spyna.it'
+  username: {
+    name: 'spyna',
+    url: 'https://spyna.it'
   }
 }
 
 const config = {
-  debug : true
+  debug: true
 }
 
 export default createStore(App, initialValue, config)

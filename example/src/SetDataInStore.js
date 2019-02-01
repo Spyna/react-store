@@ -3,6 +3,7 @@ import React from 'react'
 import { withStore } from 'spyna-react-store'
 
 class SetDataInstore extends React.Component {
+  displayName = 'SetDataInStore'
   state = { key: 'mystoreKey', value: 'MystoreValue' }
   updatestore = e => {
     e.preventDefault()
@@ -28,7 +29,7 @@ class SetDataInstore extends React.Component {
     const { key, value } = this.state
     return (
       <div className="component component4">
-        <h2>{this.constructor.name}.js</h2>
+        <h2>{this.displayName}.js</h2>
         <p>set / remove data in store</p>
         <form onSubmit={this.updatestore}>
           <label>key: </label>
