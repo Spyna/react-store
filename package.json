@@ -1,5 +1,5 @@
 {
-  "name": "@spyna/react-store",
+  "name": "spyna-react-store",
   "version": "1.0.0",
   "description": "React app state management that uses a shared storage",
   "author": "Spyna",
