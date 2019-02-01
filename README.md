@@ -1,8 +1,6 @@
 # @spyna/react-store
 
-> React app state management that uses a shared storage
-
-
+> React app state management that uses a storage
 
 ## Install
 
