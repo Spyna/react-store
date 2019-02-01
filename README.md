@@ -1,11 +1,11 @@
-# @spyna/react-store
+# spyna-react-store
 
 > React app state management that uses a storage
 
 ## Install
 
 ```bash
-npm install --save @spyna/react-store
+npm install --save spyna-react-store
 ```
 
 ## Usage
@@ -14,7 +14,7 @@ TODO
 
 ```jsx
 import React, { Component } from 'react'
-import { createStore, withStore } from '@spyna/react-store'
+import { createStore, withStore } from 'spyna-react-store'
 
 class MyComponent extends Component {
    render() {

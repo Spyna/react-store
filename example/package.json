@@ -1,5 +1,5 @@
 {
-  "name": "@spyna/react-store-example",
+  "name": "spyna-react-store-example",
   "homepage": "https://Spyna.github.io/react-store",
   "version": "0.0.0",
   "license": "MIT",
@@ -9,7 +9,7 @@
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
     "react-scripts": "^1.1.4",
-    "@spyna/react-store": "link:.."
+    "spyna-react-store": "link:.."
   },
   "scripts": {
     "start": "react-scripts start",

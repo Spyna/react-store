@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom'
 import './index.css'
 import App from './App'
 
-import { withStore, createStore } from '@spyna/react-store'
+import { withStore, createStore } from 'spyna-react-store'
 
 class MyComponent extends Component {
   componentWillMount() {

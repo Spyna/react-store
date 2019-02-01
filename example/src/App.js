@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { createStore } from '@spyna/react-store'
+import { createStore } from 'spyna-react-store'
 
 import DisplayAmount from './DisplayAmount'
 import IncrementAmount from './IncrementAmount'

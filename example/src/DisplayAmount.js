@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { withStore } from '@spyna/react-store'
+import { withStore } from 'spyna-react-store'
 
 class DisplaystoreData extends React.Component {
   render() {
