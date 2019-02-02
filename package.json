@@ -1,6 +1,6 @@
 {
   "name": "@spyna/react-store",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "React app state management that uses a global storage",
   "author": "Spyna (https://github.com/Spyna)",
   "keyword": [
@@ -28,7 +28,7 @@
     "prepare": "yarn run build",
     "predeploy": "cd example && yarn install && yarn run build",
     "deploy": "gh-pages -d example/build --message \"[skip ci] Updates\"",
-    "prettier": "prettier --write 'src/**/*.js' 'example/**/*.css' 'example/**/*.js'"
+    "prettier": "prettier --write 'src/**/*.js' 'example/**/*.css' 'example/**/*.html' 'example/**/*.js'"
   },
   "peerDependencies": {
     "prop-types": "^15.5.4",
