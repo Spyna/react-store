@@ -1,15 +1,17 @@
 {
-  "name": "spyna-react-store-example",
+  "name": "@spyna/react-store-example",
   "homepage": "https://Spyna.github.io/react-store",
   "version": "0.0.0",
   "license": "MIT",
   "private": true,
   "dependencies": {
+    "@spyna/react-store": "link:..",
+    "axios": "^0.18.0",
+    "prismjs": "^1.15.0",
     "prop-types": "^15.6.2",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
-    "react-scripts": "^1.1.4",
-    "spyna-react-store": "link:.."
+    "react-scripts": "^1.1.4"
   },
   "scripts": {
     "start": "react-scripts start",

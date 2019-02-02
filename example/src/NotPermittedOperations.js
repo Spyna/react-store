@@ -1,6 +1,6 @@
 import React from 'react'
-
-import { withStore } from 'spyna-react-store'
+import Card from './layout/Card'
+import { withStore } from '@spyna/react-store'
 
 class NotPermittedOperations extends React.Component {
   displayName = 'NotPermittedOperations'
@@ -19,19 +19,23 @@ class NotPermittedOperations extends React.Component {
 
   render() {
     return (
-      <div className="component component3">
-        <h2>{this.displayName}.js</h2>
+      <Card title={this.displayName}>
         <div>
-          This component tries to do not permitted operations, such as:
-          <pre>
-            store.set = `try to override 'set' method`{`\n`}
-            store.get = `try to override 'get' method`{`\n`}
-            store.remove = `try to override 'remove' method`{`\n`}
-            delete store.set
+          <p>
+            Open the developer console (hit <i>F12</i>) and look at the
+            messages.
+          </p>
+          <p>This component tries to do not permitted operations, such as:</p>
+          <pre className="language-js">
+            <code className="language-js">
+              store.set = `try to override 'set' method`{`\n`}
+              store.get = `try to override 'get' method`{`\n`}
+              store.remove = `try to override 'remove' method`{`\n`}
+              delete store.set
+            </code>
           </pre>
-          Open the developer console (hit <i>F12</i>) and look at the messages.
         </div>
-      </div>
+      </Card>
     )
   }
 }

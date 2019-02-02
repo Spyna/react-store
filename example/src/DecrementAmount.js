@@ -1,6 +1,6 @@
 import React from 'react'
-
-import { withStore } from 'spyna-react-store'
+import Card from './layout/Card'
+import { withStore } from '@spyna/react-store'
 
 class DecrementAmount extends React.Component {
   displayName = 'DecrementAmount'
@@ -12,13 +12,18 @@ class DecrementAmount extends React.Component {
 
   render() {
     return (
-      <div className="component component3">
-        <h2>{this.displayName}.js</h2>
-        <button onClick={this.decrement}>Decrement</button>
+      <Card title={this.displayName} size={12}>
         <p>
           This component decrements <strong>amount</strong> in store
         </p>
-      </div>
+        <ul className="card-actions">
+          <li>
+            <button className="button-primary" onClick={this.decrement}>
+              Decrement
+            </button>
+          </li>
+        </ul>
+      </Card>
     )
   }
 }
