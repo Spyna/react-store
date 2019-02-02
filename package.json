@@ -1,9 +1,14 @@
 {
   "name": "@spyna/react-store",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "React app state management that uses a global storage",
   "author": "Spyna (https://github.com/Spyna)",
-  "keyword" : ["react", "state", "store", "reactjs"],
+  "keyword": [
+    "react",
+    "state",
+    "store",
+    "reactjs"
+  ],
   "license": "MIT",
   "homepage": "https://spyna.github.io/react-store/",
   "bugs": "https://github.com/Spyna/react-store/issues",
