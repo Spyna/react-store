@@ -28,7 +28,7 @@
     "prepare": "yarn run build",
     "predeploy": "cd example && yarn install && yarn run build",
     "deploy": "gh-pages -d example/build --message \"[skip ci] Updates\"",
-    "prettier": "prettier --write 'src/**/*.js' 'example/**/*.css' 'example/**/*.js'"
+    "prettier": "prettier --write 'src/**/*.js' 'example/**/*.css' 'example/**/*.html' 'example/**/*.js'"
   },
   "peerDependencies": {
     "prop-types": "^15.5.4",

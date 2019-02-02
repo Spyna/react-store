@@ -15,3 +15,7 @@ input[type='text'] {
   font-size: 2em;
   margin: 10px;
 }
+
+.cookies {
+  display: flex
+}
