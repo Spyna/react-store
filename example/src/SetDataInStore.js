@@ -1,10 +1,10 @@
 import React from 'react'
-
-import { withStore } from 'spyna-react-store'
+import Card from './layout/Card'
+import { withStore } from '@spyna/react-store'
 
 class SetDataInstore extends React.Component {
   displayName = 'SetDataInStore'
-  state = { key: 'mystoreKey', value: 'MystoreValue' }
+  state = { key: 'myStoreKey', value: 'MystoreValue' }
   updatestore = e => {
     e.preventDefault()
     const { store } = this.props
@@ -28,8 +28,7 @@ class SetDataInstore extends React.Component {
   render() {
     const { key, value } = this.state
     return (
-      <div className="component component4">
-        <h2>{this.displayName}.js</h2>
+      <Card title={this.displayName}>
         <p>set / remove data in store</p>
         <form onSubmit={this.updatestore}>
           <label>key: </label>
@@ -51,11 +50,20 @@ class SetDataInstore extends React.Component {
             value={value}
             autoComplete="false"
           />
-          <br />
-          <button type="submit">set value</button> or{' '}
-          <button onClick={this.delete}>delete value</button>
+          <ul className="card-actions">
+            <li>
+              <button className="button-primary" type="submit">
+                set value
+              </button>
+            </li>
+            <li>
+              <button className="button-danger" onClick={this.delete}>
+                delete value
+              </button>
+            </li>
+          </ul>
         </form>
-      </div>
+      </Card>
     )
   }
 }

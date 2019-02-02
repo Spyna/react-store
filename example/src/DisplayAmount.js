@@ -1,27 +1,30 @@
 import React from 'react'
+import Card from './layout/Card'
+import { withStore } from '@spyna/react-store'
 
-import { withStore } from 'spyna-react-store'
-
-class DisplaystoreData extends React.Component {
-  displayName = 'DisplaystoreData'
+class DisplaystoreData extends Card {
+  displayName = 'DisplayAmount'
   render() {
     const { store } = this.props
     return (
-      <div className="component component1">
-        <h2>{this.displayName}.js</h2>
+      <Card title={this.displayName}>
         <p>
           <strong>amount</strong>.<br />
           <span className="amount">{store.get('amount')}</span>
         </p>
         <div>
-          Amount, accessed using
-          <pre>store.get('amount', 0)</pre>
+          Amount, accessed using{' '}
+          <code className="language-javascript">store.get('amount', 0)</code>
         </div>
         <div>
-          <h2>store data</h2>
-          <pre>{JSON.stringify(store.getState(), null, ' ')}</pre>
+          <h2>All data stored </h2>
+          <pre className="language-json">
+            <code className="language-json">
+              {JSON.stringify(store.getState(), null, ' ')}
+            </code>
+          </pre>
         </div>
-      </div>
+      </Card>
     )
   }
 }

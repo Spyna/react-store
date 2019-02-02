@@ -1,6 +1,6 @@
 import React from 'react'
-
-import { withStore } from 'spyna-react-store'
+import Card from './layout/Card'
+import { withStore } from '@spyna/react-store'
 
 class GetDataFromStore extends React.Component {
   displayName = 'GetDataFromStore'
@@ -21,8 +21,7 @@ class GetDataFromStore extends React.Component {
     const { key } = this.state
     const value = this.props.store.get(key)
     return (
-      <div className="component component5">
-        <h2>{this.GetDataFromStore}.js</h2>
+      <Card title={this.displayName}>
         <p>get data from store</p>
         <form onSubmit={this.getFromStore}>
           key:{'  '}
@@ -34,12 +33,12 @@ class GetDataFromStore extends React.Component {
             value={key}
             autoComplete="false"
           />
-          <br />
           The value is:
-          <br />
-          <span className="display-value">{value || 'undefined'}</span>
+          <pre className="language-js">
+            <code className="language-js">{value || 'undefined'}</code>
+          </pre>
         </form>
-      </div>
+      </Card>
     )
   }
 }
