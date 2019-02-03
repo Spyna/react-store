@@ -26,7 +26,7 @@ export default class Card extends React.Component {
     const { size = 6, title } = this.props
     const { code, showCode } = this.state
     return (
-      <div className={`col col-md-${size}`}>
+      <div className={`col col-md-${size} col-sm-12`}>
         <div className="card">
           <h3 className="card-title">
             {title}.js
@@ -45,7 +45,7 @@ export default class Card extends React.Component {
                     this.props.title
                   }.js`}
                 >
-                  <i class="material-icons">open_in_new</i>
+                  <i className="material-icons">open_in_new</i>
                 </a>
               </button>
             </span>

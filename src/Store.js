@@ -1,22 +1,33 @@
-const createStore = Component => {
+
+import defaultConfig from './defaultConfig'
+
+const createStore = (Component, config = defaultConfig) => {
   const componentState = Component.state
+  const promisify = config.promisify || false
+  const updateState = state => {
+    const promise = new Promise(resolve => {
+      Component.setState(state)
+      resolve()
+    })
+    return promisify ? promise : undefined
+  }
   return {
     get: (key, defaultValue) => {
-      const value = componentState[key]
+      let value = componentState[key]
       if (value === undefined) {
-        return defaultValue
+        value = defaultValue
       }
       return value
     },
     set: (key, value) => {
       const state = componentState
       state[key] = value
-      Component.setState(state)
+      return updateState(state)
     },
     remove: key => {
       const state = componentState
       delete state[key]
-      Component.setState(state)
+      return updateState(state)
     },
     getState: () => {
       return Object.assign({}, componentState)
@@ -25,8 +36,8 @@ const createStore = Component => {
 }
 
 class Store {
-  constructor(Component) {
-    const store = createStore(Component)
+  constructor(Component, config) {
+    const store = createStore(Component, config)
     Object.assign(this, store)
   }
 }

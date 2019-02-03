@@ -22,7 +22,7 @@ class App extends Component {
           </p>
           <div className="row">
             <DisplayAmount />
-            <div className="col col-md-6">
+            <div className="col  col-sm-12 col-md-6">
               <IncrementAmount />
               <DecrementAmount />
             </div>
