@@ -1,4 +1,3 @@
-
 import defaultConfig from './defaultConfig'
 
 const createStore = (Component, config = defaultConfig) => {

@@ -11,10 +11,7 @@ const createStore = (WrappedComponent, initialValue, config) => {
     render() {
       return (
         <StoreContext.Provider
-          value={{
-            state: this.state,
-            store: new Store(this, config)
-          }}
+          value={new Store(this, config)}
         >
           <WrappedComponent {...this.props} />
         </StoreContext.Provider>
@@ -31,7 +28,7 @@ const withStore = WrappedComponent => {
           {context => {
             return (
               <WrappedComponent
-                store={new Proxy(context.store, storeHandler)}
+                store={new Proxy(context, storeHandler)}
                 {...this.props}
               />
             )
