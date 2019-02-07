@@ -10,5 +10,5 @@ module.exports = function(config) {
     jest: {
       projectType: "react"
     }
-  });
-};
+  })
+}
