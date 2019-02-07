@@ -23,7 +23,6 @@ describe('Create Store', () => {
       }
     }
     const Store = createStore(TestComponent, initialValue)
-
     const wrapper = mount(<Store />)
     const instance = wrapper.instance()
 
@@ -37,10 +36,7 @@ describe('With Store', () => {
     const WithStore = withStore(TestComponent)
 
     const testContextValue = {
-      store: {
-        get: () => 'test-value'
-      },
-      state: {}
+      get: () => 'test-value'
     }
 
     const value = 'test'
@@ -55,19 +51,36 @@ describe('With Store', () => {
     const renderComponent = wrapper.find(TestComponent).first()
     expect(renderComponent.exists()).toBe(true)
 
-    expect(renderComponent.prop('store').get()).toBe(
-      testContextValue.store.get()
-    )
+    expect(renderComponent.prop('store').get()).toBe(testContextValue.get())
+  })
+
+  it('Context.Consumer needs a store in the Provicer value', () => {
+    const WithStore = withStore(TestComponent)
+
+    const testContextValue = 'an invalid value for the provider'
+
+    const value = 'test'
+    let errorComponent
+    try {
+      errorComponent = (
+        <StoreContext.Provider value={testContextValue}>
+          <WithStore property={value} />
+        </StoreContext.Provider>
+      )
+    } catch (error) {
+      expect(error).toBeInstanceOf(TypeError)
+      expect(error.message).toBe(
+        'Cannot create proxy with a non-object as target or handler'
+      )
+    }
+    expect(errorComponent.props.value).toBe(testContextValue)
   })
 
   it('it protects store methods from being modified', () => {
     const WithStore = withStore(TestComponent)
 
     const testContextValue = {
-      store: {
-        get: () => 'test-value'
-      },
-      state: {}
+      get: () => 'test-value'
     }
 
     const wrapper = mount(
@@ -81,9 +94,13 @@ describe('With Store', () => {
     const renderComponent = wrapper.find(TestComponent).first()
     const store = renderComponent.prop('store')
     store.get = () => 'another function'
-    expect(store.get()).toBe(testContextValue.store.get())
+    expect(store.get()).toBe(testContextValue.get())
     expect(console.group).toBeCalled()
+    expect(console.group.mock.calls[0][0]).toContain('@spyna/react-store')
     expect(console.error).toBeCalled()
+    expect(console.error.mock.calls[0][0]).toBe(
+      `Sorry, you can't modify the [get] property this way.`
+    )
     expect(console.groupEnd).toBeCalled()
   })
 
@@ -91,10 +108,7 @@ describe('With Store', () => {
     const WithStore = withStore(TestComponent)
 
     const testContextValue = {
-      store: {
-        get: () => 'test-value'
-      },
-      state: {}
+      get: () => 'test-value'
     }
 
     const wrapper = mount(
@@ -108,7 +122,7 @@ describe('With Store', () => {
     const renderComponent = wrapper.find(TestComponent).first()
     const store = renderComponent.prop('store')
     delete store.get
-    expect(store.get()).toBe(testContextValue.store.get())
+    expect(store.get()).toBe(testContextValue.get())
     expect(console.group).toBeCalled()
     expect(console.error).toBeCalled()
     expect(console.groupEnd).toBeCalled()

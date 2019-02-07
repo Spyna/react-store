@@ -47,4 +47,64 @@ describe('Store test', () => {
     expect(component.setState).toBeCalled()
     expect(store.get(key)).toBeUndefined()
   })
+
+  it(`'set' returns a promise by default`, done => {
+    const component = {
+      state: { key: 'test-state' },
+      setState: jest.fn()
+    }
+
+    const store = new Store(component)
+
+    const key = 'text-key'
+    const value = 'text-value'
+    store.set(key, value).then(() => {
+      expect(component.setState).toBeCalled()
+      expect(store.get(key)).toBe(value)
+      done()
+    })
+  })
+
+  it(`'remove' returns a promise by default`, done => {
+    const component = {
+      state: { key: 'test-state' },
+      setState: jest.fn()
+    }
+    const config = {
+      promisify: true
+    }
+    const store = new Store(component, config)
+
+    const key = 'text-key'
+    const value = 'text-value'
+    store.set(key, value)
+    expect(component.setState).toBeCalled()
+
+    store.remove(key).then(() => {
+      expect(component.setState).toBeCalled()
+      expect(store.get(key)).toBeUndefined()
+      done()
+    })
+  })
+
+  it('returns nothing if no promise is configured', () => {
+    const component = {
+      state: { key: 'test-state' },
+      setState: jest.fn()
+    }
+    const config = {
+      promisify: false
+    }
+    const store = new Store(component, config)
+
+    const key = 'text-key'
+    const value = 'text-value'
+    store.set(key, value)
+    expect(component.setState).toBeCalled()
+
+    const result = store.remove(key)
+    expect(result).toBeUndefined()
+    expect(component.setState).toBeCalled()
+    expect(store.get(key)).toBeUndefined()
+  })
 })

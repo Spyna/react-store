@@ -2,7 +2,7 @@ import React from 'react'
 import Store, { storeHandler } from './Store'
 import StoreContext from './StoreContext'
 
-const createStore = (WrappedComponent, initialValue, config = {}) => {
+const createStore = (WrappedComponent, initialValue, config) => {
   return class extends React.Component {
     state = {
       ...initialValue
@@ -11,10 +11,7 @@ const createStore = (WrappedComponent, initialValue, config = {}) => {
     render() {
       return (
         <StoreContext.Provider
-          value={{
-            state: this.state,
-            store: new Store(this)
-          }}
+          value={new Store(this, config)}
         >
           <WrappedComponent {...this.props} />
         </StoreContext.Provider>
@@ -31,7 +28,7 @@ const withStore = WrappedComponent => {
           {context => {
             return (
               <WrappedComponent
-                store={new Proxy(context.store, storeHandler)}
+                store={new Proxy(context, storeHandler)}
                 {...this.props}
               />
             )

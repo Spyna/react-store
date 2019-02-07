@@ -90,7 +90,9 @@ this.props.store.set('another_key', {name: 'another value'})
 
 ```jsx
 const a_key  = this.props.store.get('a_key')
-const another_key = this.props.store.get('another_key')
+
+const defaultValue = {name : 'an optional default value if the key is not found'}
+const another_key = this.props.store.get('another_key', defaultValue)
 ```
 
 ### Remove data from the store 
@@ -104,6 +106,40 @@ this.props.store.remove('a_key', 'a value')
 ```jsx
 const store = this.props.store.getState()
 ```
+
+## Configuration
+
+When creating the store with `createStore` you can pass some options:
+
+ * initial store value
+ * custom store confirations
+
+### initial value 
+
+```jsx
+const initialValue = {
+  someKey : 'some value',
+  anotherKey : {
+    name : 'my initial value'
+  }
+}
+export default createStore(App, initialValue)
+
+```
+
+### Default config
+
+```jsx
+const config = {
+  promisify: true
+}
+export default createStore(App, {}, config)
+
+```
+
+| Property | default | meaning |
+| --- | --- | --- |
+| promisify | **true** | if true *set* and *remove* methods returns a **Promise**, so you can use `store.remove().then(() => {...})` |
 
 ## Contributing
 
