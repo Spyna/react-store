@@ -1,5 +1,5 @@
 import React from 'react'
-import Card from './layout/Card'
+import Card from '../../layout/CodeCard'
 import { withStore } from '@spyna/react-store'
 
 class NotPermittedOperations extends React.Component {
@@ -19,7 +19,10 @@ class NotPermittedOperations extends React.Component {
 
   render() {
     return (
-      <Card title={this.displayName}>
+      <Card
+        title={this.displayName}
+        source="src/views/Demo/NotPermittedOperions.js"
+      >
         <div>
           <p>
             Open the developer console (hit <i>F12</i>) and look at the

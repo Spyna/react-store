@@ -1,6 +1,7 @@
 import React from 'react'
-import Card from './layout/Card'
+import Card from '../../layout/CodeCard'
 import { withStore } from '@spyna/react-store'
+import Button from '@material-ui/core/Button'
 
 class DecrementAmount extends React.Component {
   displayName = 'DecrementAmount'
@@ -12,17 +13,13 @@ class DecrementAmount extends React.Component {
 
   render() {
     return (
-      <Card title={this.displayName} size={12}>
+      <Card title={this.displayName} source="src/views/Demo/DecrementAmount.js">
         <p>
           This component decrements <strong>amount</strong> in store
         </p>
-        <ul className="card-actions">
-          <li>
-            <button className="button-primary" onClick={this.decrement}>
-              Decrement
-            </button>
-          </li>
-        </ul>
+        <Button variant="contained" color="primary" onClick={this.decrement}>
+          click to Decrement amount
+        </Button>
       </Card>
     )
   }

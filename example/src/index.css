@@ -19,3 +19,8 @@ input[type='text'] {
 .cookies {
   display: flex;
 }
+
+a,
+a:visited {
+  color: blue;
+}

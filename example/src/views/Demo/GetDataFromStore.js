@@ -1,5 +1,5 @@
 import React from 'react'
-import Card from './layout/Card'
+import Card from '../../layout/CodeCard'
 import { withStore } from '@spyna/react-store'
 
 class GetDataFromStore extends React.Component {
@@ -21,7 +21,10 @@ class GetDataFromStore extends React.Component {
     const { key } = this.state
     const value = this.props.store.get(key)
     return (
-      <Card title={this.displayName}>
+      <Card
+        title={this.displayName}
+        source="src/views/Demo/GetDataFromStore.js"
+      >
         <p>get data from store</p>
         <form onSubmit={this.getFromStore}>
           key:{'  '}
