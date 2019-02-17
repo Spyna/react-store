@@ -1,7 +1,6 @@
 import React from 'react'
 import { createStore, combineReducers, applyMiddleware } from 'redux'
 import { connect, Provider } from 'react-redux'
-import Paper from '@material-ui/core/Paper'
 import DisplayComponent from './DisplayComponent'
 import Ul from './Ul'
 import demoData from './demoData'
