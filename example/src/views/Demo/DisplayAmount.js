@@ -1,5 +1,5 @@
 import React from 'react'
-import Card from './layout/Card'
+import Card from '../../layout/CodeCard'
 import { withStore } from '@spyna/react-store'
 
 class DisplaystoreData extends Card {
@@ -7,7 +7,7 @@ class DisplaystoreData extends Card {
   render() {
     const { store } = this.props
     return (
-      <Card title={this.displayName}>
+      <Card title={this.displayName} source="src/views/Demo/DisplayAmount.js">
         <p>
           <strong>amount</strong>.<br />
           <span className="amount">{store.get('amount')}</span>

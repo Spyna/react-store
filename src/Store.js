@@ -1,11 +1,11 @@
 import defaultConfig from './defaultConfig'
 
-const createStore = (Component, config = defaultConfig) => {
-  const componentState = Component.state
+const createStore = (StoreProvider, config = defaultConfig) => {
+  const componentState = StoreProvider.state
   const promisify = config.promisify || false
   const updateState = state => {
     const promise = new Promise(resolve => {
-      Component.setState(state)
+      StoreProvider.setState(state)
       resolve()
     })
     return promisify ? promise : undefined

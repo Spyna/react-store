@@ -4,15 +4,11 @@ import StoreContext from './StoreContext'
 
 const createStore = (WrappedComponent, initialValue, config) => {
   return class extends React.Component {
-    state = {
-      ...initialValue
-    }
+    state = { ...initialValue }
 
     render() {
       return (
-        <StoreContext.Provider
-          value={new Store(this, config)}
-        >
+        <StoreContext.Provider value={new Store(this, config)}>
           <WrappedComponent {...this.props} />
         </StoreContext.Provider>
       )
@@ -21,7 +17,7 @@ const createStore = (WrappedComponent, initialValue, config) => {
 }
 
 const withStore = WrappedComponent => {
-  return class extends React.Component {
+  return class extends React.PureComponent {
     render() {
       return (
         <StoreContext.Consumer>
