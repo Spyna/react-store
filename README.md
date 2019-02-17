@@ -25,6 +25,8 @@ npm install --save @spyna/react-store
 
 ## Usage
 
+[View working code on CodeSandbox](https://codesandbox.io/s/62zq0n407r?autoresize=1&hidenavigation=1)
+
 
 ### Create store
 
