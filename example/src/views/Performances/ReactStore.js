@@ -1,6 +1,5 @@
 import React from 'react'
 import { createStore, withStore } from '@spyna/react-store'
-import Paper from '@material-ui/core/Paper'
 import DisplayComponent from './DisplayComponent'
 import Ul from './Ul'
 import demoData from './demoData'
@@ -43,7 +42,6 @@ class DisplayThings extends React.Component {
         )
       })
     }
-    const start = new Date().getTime()
     return (
       <Card
         title="With react-store"
