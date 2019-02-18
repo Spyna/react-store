@@ -5,6 +5,9 @@ import DisplayComponent from './DisplayComponent'
 import Ul from './Ul'
 import demoData from './demoData'
 import Card from '../../layout/CodeCard'
+import Log from './Log'
+
+const log = new Log('Redux')
 
 const reducer = (state = {}, action) => {
   const { id, type } = action
@@ -22,10 +25,7 @@ const timing = store => next => action => {
   const start = new Date().getTime()
   let result = next(action)
   const end = new Date().getTime()
-  console.log(
-    `%c Action took ${end - start} milliseconds.`,
-    'background: #bada55; color: #222'
-  )
+  log.logAction(start, end)
   return result
 }
 
@@ -42,10 +42,7 @@ const store = createStore(
 class ReactRedux extends React.PureComponent {
   componentDidUpdate() {
     const end = new Date().getTime()
-    console.log(
-      `%c Render took ${end - this.start} milliseconds.`,
-      'background: #dada55; color: #222'
-    )
+    log.logRender(this.start, end)
   }
 
   render() {
@@ -53,6 +50,7 @@ class ReactRedux extends React.PureComponent {
     const data = Object.keys(amounts)
     return (
       <Card
+        fullLength
         title="With react-redux"
         source="src/views/Performances/ReactRedux.js"
       >

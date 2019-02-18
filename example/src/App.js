@@ -8,7 +8,7 @@ import Performances from './views/Performances/PerformancesView'
 class App extends Component {
   render() {
     return (
-      <BrowserRouter>
+      <BrowserRouter basename="react-store">
         <div>
           <Header />
           <Route exact path="/" component={Home} />
