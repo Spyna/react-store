@@ -1,38 +1,4 @@
-import React from 'react'
-import Store, { storeHandler } from './Store'
-import StoreContext from './StoreContext'
-
-const createStore = (WrappedComponent, initialValue, config) => {
-  return class extends React.Component {
-    state = { ...initialValue }
-
-    render() {
-      return (
-        <StoreContext.Provider value={new Store(this, config)}>
-          <WrappedComponent {...this.props} />
-        </StoreContext.Provider>
-      )
-    }
-  }
-}
-
-const withStore = WrappedComponent => {
-  return class extends React.PureComponent {
-    render() {
-      return (
-        <StoreContext.Consumer>
-          {context => {
-            return (
-              <WrappedComponent
-                store={new Proxy(context, storeHandler)}
-                {...this.props}
-              />
-            )
-          }}
-        </StoreContext.Consumer>
-      )
-    }
-  }
-}
+import createStore from './createStore'
+import withStore from './withStore'
 
 export { createStore, withStore }
