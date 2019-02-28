@@ -6,12 +6,12 @@ import Adapter from 'enzyme-adapter-react-16'
 
 class TestCreateStoreComponent extends React.Component {
   render() {
-    return <div id="test-div">{this.props.children}</div>
+    return <div id='test-div'>{this.props.children}</div>
   }
 }
 class TestWithStoreComponent extends React.Component {
   render() {
-    return <div id="test-div-withStore">hello</div>
+    return <div id='test-div-withStore'>hello</div>
   }
 }
 
