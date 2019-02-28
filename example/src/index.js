@@ -8,14 +8,12 @@ import theme from './theme'
 
 import './index.css'
 import App from './App'
-// import SecondApp from './SecondApp'
 
 ReactDOM.render(
   <MuiThemeProvider theme={theme}>
-    <Reboot />
-    <App />
-    {/* <hr />
-    <SecondApp /> */}
+    <Reboot>
+      <App />
+    </Reboot>
   </MuiThemeProvider>,
   document.getElementById('root')
 )

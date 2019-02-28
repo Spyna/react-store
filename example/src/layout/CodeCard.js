@@ -14,6 +14,11 @@ const style = theme => ({
     padding: theme.spacing.unit,
     marginTop: theme.spacing.unit
   },
+  fullLength: {
+    minWidth: 300,
+    padding: theme.spacing.unit,
+    marginTop: theme.spacing.unit
+  },
   title: {
     display: 'flex',
     justifyContent: 'space-between'
@@ -33,7 +38,7 @@ class Card extends React.Component {
       const response = await axios.get(
         `https://raw.githubusercontent.com/Spyna/react-store/master/example/${
           this.props.source
-        }.js`
+        }`
       )
       code = response.data
     }
@@ -41,10 +46,10 @@ class Card extends React.Component {
   }
 
   render() {
-    const { title, source, classes } = this.props
+    const { title, source, classes, fullLength } = this.props
     const { code, showCode } = this.state
     return (
-      <Paper className={classes.paper}>
+      <Paper className={fullLength ? classes.fullLength : classes.paper}>
         <h3 className={classes.title}>
           {title}
           <span className="float-right">
@@ -58,7 +63,7 @@ class Card extends React.Component {
               <a
                 target="_blank"
                 rel="noopener noreferrer"
-                href={`https://github.com/Spyna/react-store/blob/master/example/${source}.js`}
+                href={`https://github.com/Spyna/react-store/blob/master/example/${source}`}
               >
                 <OpenIcon fontSize="small" />
               </a>

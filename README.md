@@ -63,7 +63,9 @@ export default createStore(App, initialValue)
 
 You can pass the *initial store value* as the second argumento of the function `createStore`.
 
-### connect a component to the store
+### Connect a component to the store
+
+#### Using `props.store.get('key')`
 
 ```jsx
 // MyComponent
@@ -80,6 +82,27 @@ class MyComponent extends Component {
 
 const ConnectedComponent = withStore(MyComponent);
 ```
+
+#### Using `props.key`
+
+You can pass an array of *keys* to the function `withStore` to spread the keys of the store into the Component props
+
+```jsx
+// MyComponent
+import React, { Component } from 'react'
+import { withStore } from '@spyna/react-store'
+
+class MyComponent extends Component {
+   render() {
+     return (
+       <p>My Amount: {this.props.amount}</p>
+     )
+   }
+}
+
+const ConnectedComponent = withStore(MyComponent, ['amount']);
+```
+
 
 ### Set data in store 
 

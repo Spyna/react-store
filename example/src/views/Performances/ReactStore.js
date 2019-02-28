@@ -5,13 +5,14 @@ import Ul from './Ul'
 import demoData from './demoData'
 import Card from '../../layout/CodeCard'
 
+import Log from './Log'
+
+const log = new Log('React-store')
+
 class DisplayThings extends React.Component {
   componentDidUpdate() {
     const end = new Date().getTime()
-    console.log(
-      `%c Render took ${end - this.start} milliseconds.`,
-      'background: #55da55; color: #222'
-    )
+    log.logRender(this.start, end)
   }
 
   componentWillMount() {
@@ -20,10 +21,7 @@ class DisplayThings extends React.Component {
 
   componentDidMount() {
     const end = new Date().getTime()
-    console.log(
-      `%c Mount took ${end - this.start} milliseconds.`,
-      'background: #55da55; color: #222'
-    )
+    log.logRender(this.start, end)
   }
 
   render() {
@@ -36,14 +34,12 @@ class DisplayThings extends React.Component {
       dataInStore.amount++
       store.set(id, dataInStore).then(() => {
         const end = new Date().getTime()
-        console.log(
-          `%c Action took ${end - start} milliseconds.`,
-          'background: #55da55; color: #222'
-        )
+        log.logAction(start, end)
       })
     }
     return (
       <Card
+        fullLength
         title="With react-store"
         source="src/views/Performances/ReactStore.js"
       >

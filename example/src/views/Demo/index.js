@@ -47,4 +47,6 @@ const initialValue = {
   }
 }
 
-export default asCard('Demo', createStore(Demo, initialValue))
+const config = {}
+
+export default asCard('Demo', createStore(Demo, initialValue, config))
