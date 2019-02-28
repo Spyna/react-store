@@ -80,5 +80,4 @@ describe('With Store', () => {
     }
     expect(errorComponent.props.value).toBe(testContextValue)
   })
-
 })

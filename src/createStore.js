@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 import { storeHandler } from './storeProxyHandler'
 import defaultConfig from './defaultConfig'
 import StoreContext from './StoreContext'
@@ -60,9 +60,7 @@ const createStore = (
 
     render() {
       return (
-        <StoreContext.Provider
-          value={{ store: this.state.store }}
-        >
+        <StoreContext.Provider value={{ store: this.state.store }}>
           <WrappedComponent {...this.props} />
         </StoreContext.Provider>
       )
