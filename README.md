@@ -137,7 +137,7 @@ const store = this.props.store.getState()
 When creating the store with `createStore` you can pass some options:
 
  * initial store value
- * custom store confirations
+ * custom store configuration
 
 ### initial value 
 
