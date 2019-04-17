@@ -8,7 +8,7 @@ import Performances from './views/Performances/PerformancesView'
 class App extends Component {
   render() {
     return (
-      <BrowserRouter basename="react-store">
+      <BrowserRouter basename="react-store" basename={process.env.PUBLIC_URL}>
         <div>
           <Header />
           <Route exact path="/" component={Home} />
