@@ -182,3 +182,7 @@ The `gh-pages` branch is mainteined by CI and contains the documentation and exa
 ## License
 
 MIT © [Spyna](https://github.com/Spyna)
+
+
+[![Analytics](https://ga-beacon.appspot.com/UA-89584671-2/github/react-store)](https://github.com/igrigorik/ga-beacon)
+
