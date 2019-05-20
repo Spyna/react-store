@@ -7,6 +7,7 @@ import SetDataInStore from './SetDataInStore'
 import GetDataFromStore from './GetDataFromStore'
 import NotPermittedOperations from './NotPermittedOperations'
 import asCard from '../../layout/asCard'
+import SetMultipleData from './SetMultipleData'
 
 class Demo extends React.Component {
   render() {
@@ -31,6 +32,7 @@ class Demo extends React.Component {
             <DecrementAmount />
           </div>
           <SetDataInStore />
+          <SetMultipleData />
           <GetDataFromStore />
           <NotPermittedOperations />
         </div>

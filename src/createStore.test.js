@@ -186,26 +186,8 @@ describe('Use the store', () => {
     expect(state[key]).toBe(value)
   })
 
-  it('method set should not return a promise', () => {
-    const App = createStore(TestCreateStoreComponent, {}, { promisify: false })
-    const WithStore = withStore(TestWithStoreComponent)
-    const wrapper = mount(
-      <App>
-        <WithStore />
-      </App>
-    )
-
-    const renderComponent = wrapper.find(TestWithStoreComponent).first()
-    expect(renderComponent.exists()).toBe(true)
-    const store = renderComponent.prop('store')
-
-    const key = 'key '
-    const value = 'value'
-    const set = store.set(key, value)
-    expect(set).toBeUndefined()
-  })
   it('method set should return a promise', () => {
-    const App = createStore(TestCreateStoreComponent, {}, { promisify: true })
+    const App = createStore(TestCreateStoreComponent, {}, {})
     const WithStore = withStore(TestWithStoreComponent)
     const wrapper = mount(
       <App>
@@ -219,7 +201,53 @@ describe('Use the store', () => {
 
     const key = 'key '
     const value = 'value'
-    const set = store.set(key, value)
-    expect(set).toBeInstanceOf(Promise)
+    const setPromise = store.set(key, value)
+    expect(setPromise).toBeInstanceOf(Promise)
+  })
+
+  it('should call a custom callback function when store changes', async () => {
+    const listener = jest.fn()
+    const App = createStore(TestCreateStoreComponent, {}, { listener })
+    const WithStore = withStore(TestWithStoreComponent)
+    const wrapper = mount(
+      <App>
+        <WithStore />
+      </App>
+    )
+
+    const renderComponent = wrapper.find(TestWithStoreComponent).first()
+    expect(renderComponent.exists()).toBe(true)
+    const store = renderComponent.prop('store')
+
+    const key = 'key '
+    const value = 'value'
+    await store.set(key, value)
+
+    expect(listener).toBeCalledWith(store.getState())
+  })
+
+  it('method set multiple values at once', async () => {
+    const App = createStore(TestCreateStoreComponent, {}, {})
+    const WithStore = withStore(TestWithStoreComponent)
+    const wrapper = mount(
+      <App>
+        <WithStore />
+      </App>
+    )
+
+    const renderComponent = wrapper.find(TestWithStoreComponent).first()
+    expect(renderComponent.exists()).toBe(true)
+    const store = renderComponent.prop('store')
+
+    const key = 'key 1'
+    const value = 'value'
+
+    const key2 = 'key 2'
+    const value2 = 'value 2'
+
+    await store.setAll({ key, value }, { key: key2, value: value2 })
+
+    expect(store.getState()[key]).toBe(value)
+    expect(store.getState()[key2]).toBe(value2)
   })
 })

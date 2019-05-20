@@ -30,7 +30,7 @@ npm install --save @spyna/react-store
 
 ### Create store
 
-```jsx
+```JS
 // App.js
 import React, { Component } from 'react'
 import { createStore } from '@spyna/react-store'
@@ -67,7 +67,7 @@ You can pass the *initial store value* as the second argumento of the function `
 
 #### Using `props.store.get('key')`
 
-```jsx
+```JS
 // MyComponent
 import React, { Component } from 'react'
 import { withStore } from '@spyna/react-store'
@@ -87,7 +87,7 @@ const ConnectedComponent = withStore(MyComponent);
 
 You can pass an array of *keys* to the function `withStore` to spread the keys of the store into the Component props
 
-```jsx
+```JS
 // MyComponent
 import React, { Component } from 'react'
 import { withStore } from '@spyna/react-store'
@@ -106,14 +106,14 @@ const ConnectedComponent = withStore(MyComponent, ['amount']);
 
 ### Set data in store 
 
-```jsx
+```JS
 this.props.store.set('a_key', 'a value')
 this.props.store.set('another_key', {name: 'another value'})
 ```
 
 ### Read data from the store
 
-```jsx
+```JS
 const a_key  = this.props.store.get('a_key')
 
 const defaultValue = {name : 'an optional default value if the key is not found'}
@@ -122,14 +122,56 @@ const another_key = this.props.store.get('another_key', defaultValue)
 
 ### Remove data from the store 
 
-```jsx
+```JS
 this.props.store.remove('a_key', 'a value')
 ```
 
 ### Get all data from the store
 
-```jsx
+```JS
 const store = this.props.store.getState()
+```
+
+
+### Set multiple data in one shot
+
+Using an object with the `key` and the `value` properties: `{key: 'key', value: theValue}`
+
+```JS
+const firstObject = {
+  key: 'key-one',
+  value: 'value-one'
+}
+const secondObject = {
+  key: 'key-two',
+  value: 'value-two'
+}
+this.props.store.setAll(firstObject, secondObject)
+
+```
+
+### Listen to store modification
+
+You can listen to store modifications passing a *callback* function to the `createStore` function *config* object.
+
+The config property is: `listener`. 
+
+In the following example, the store is initialized reading the `localStorage` and every time the store is modified, its value is stored in the `localStorage`.
+
+
+```
+const MY_STORE = 'my-store';
+
+const initialValue = JSON.read(localStorage.getItem(MY_STORE) || "{}");
+
+const config = {
+  listener: (state) => {
+    localStorage.setItem(JSON.stringify(MY_STORE))
+  }
+}
+
+export default createStore(App, initialValue, config)
+
 ```
 
 ## Configuration
@@ -141,7 +183,7 @@ When creating the store with `createStore` you can pass some options:
 
 ### initial value 
 
-```jsx
+```JS
 const initialValue = {
   someKey : 'some value',
   anotherKey : {
@@ -154,17 +196,17 @@ export default createStore(App, initialValue)
 
 ### Default config
 
-```jsx
+```JS
 const config = {
-  promisify: true
+  listener: (state) => {}
 }
 export default createStore(App, {}, config)
 
 ```
 
-| Property | default | meaning |
+| Property | Type | default | meaning |
 | --- | --- | --- |
-| promisify | **true** | if true *set* and *remove* methods returns a **Promise**, so you can use `store.remove().then(() => {...})` |
+| listener | function | `(state) => {}` does nothing | A callback function that is called after the methods: `set`, `setAll`, `remove`. The function accepts the new `store` value as parameter. |
 
 ## Contributing
 
@@ -178,6 +220,13 @@ The `gh-pages` branch is mainteined by CI and contains the documentation and exa
 * Add documentation and examples of your changes under the folder `example`
 * Run `yarn prettier` or `npm run prettier` to format the source of the project
 * Thank you
+
+### Developmnent
+
+Run `yarn start` to *compile* to source code. 
+
+To test changes run `cd example && yarn start` 
+
 
 ## License
 
