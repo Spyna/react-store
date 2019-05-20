@@ -6,7 +6,7 @@ import StoreContext from './StoreContext'
 /**
  * @param {ReactElement} WrappedComponent the component to connect with the store
  * @param {Object} initialValue the initial store value or nothing
- * @param {Object} config the custom configuration. If nothing is passed will be used the default config
+ * @param {Object} config the custom configuration. If nothing is passed will use the default config
  */
 const createStore = (
   WrappedComponent,
@@ -15,7 +15,7 @@ const createStore = (
 ) => {
   const userConfig = Object.freeze({ ...defaultConfig, ...config })
 
-  const { promisify } = userConfig
+  const { listener } = userConfig
 
   return class extends React.Component {
     constructor(props) {
@@ -24,11 +24,11 @@ const createStore = (
     }
 
     updateState = state => {
-      const promise = new Promise(resolve => {
+      return new Promise(resolve => {
         this.setState({ storage: state })
-        resolve()
+        resolve(state)
+        listener(state)
       })
-      return promisify ? promise : undefined
     }
 
     componentWillMount() {

@@ -1,3 +1,3 @@
 export default {
-  promisify: true
+  listener: () => {}
 }

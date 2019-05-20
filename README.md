@@ -150,6 +150,30 @@ this.props.store.setAll(firstObject, secondObject)
 
 ```
 
+### Listen to store modification
+
+You can listen to store modifications passing a *callback* function to the `createStore` function *config* object.
+
+The config property is: `listener`. 
+
+In the following example, the store is initialized reading the `localStorage` and every time the store is modified, its value is stored in the `localStorage`.
+
+
+```
+const MY_STORE = 'my-store';
+
+const initialValue = JSON.read(localStorage.getItem(MY_STORE) || "{}");
+
+const config = {
+  listener: (state) => {
+    localStorage.setItem(JSON.stringify(MY_STORE))
+  }
+}
+
+export default createStore(App, initialValue, config)
+
+```
+
 ## Configuration
 
 When creating the store with `createStore` you can pass some options:
@@ -174,15 +198,15 @@ export default createStore(App, initialValue)
 
 ```JS
 const config = {
-  promisify: true
+  listener: (state) => {}
 }
 export default createStore(App, {}, config)
 
 ```
 
-| Property | default | meaning |
+| Property | Type | default | meaning |
 | --- | --- | --- |
-| promisify | **true** | if true *set* and *remove* methods returns a **Promise**, so you can use `store.remove().then(() => {...})` |
+| listener | function | `(state) => {}` does nothing | A callback function that is called after the methods: `set`, `setAll`, `remove`. The function accepts the new `store` value as parameter. |
 
 ## Contributing
 
@@ -196,6 +220,13 @@ The `gh-pages` branch is mainteined by CI and contains the documentation and exa
 * Add documentation and examples of your changes under the folder `example`
 * Run `yarn prettier` or `npm run prettier` to format the source of the project
 * Thank you
+
+### Developmnent
+
+Run `yarn start` to *compile* to source code. 
+
+To test changes run `cd example && yarn start` 
+
 
 ## License
 
