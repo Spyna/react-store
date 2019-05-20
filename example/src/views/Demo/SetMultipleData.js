@@ -40,7 +40,8 @@ class SetDataInstore extends React.Component {
       <Card title={this.displayName} source="src/views/Demo/SetMultipleData.js">
         <p>
           set multiple data at once, using an object in the form{' '}
-          <code className="language-javascript">{`{ key : 'some-key', value : 'a value' }`}</code>.
+          <code className="language-javascript">{`{ key : 'some-key', value : 'a value' }`}</code>
+          .
         </p>
         <pre>
           <code className="language-javascript">
