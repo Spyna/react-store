@@ -6,7 +6,7 @@ import Adapter from 'enzyme-adapter-react-16'
 
 class TestComponent extends React.Component {
   render() {
-    return <div id="test-div">hello</div>
+    return <div id='test-div'>hello</div>
   }
 }
 
