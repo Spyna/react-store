@@ -41,14 +41,22 @@ const createStore = (
           return value
         },
         set: (key, value) => {
-          const state = this.state.storage
-          state[key] = value
-          return this.updateState(state)
+          const { storage } = this.state
+          storage[key] = value
+          return this.updateState(storage)
+        },
+        setAll: (...arrayOfEntris) => {
+          const { storage } = this.state
+          arrayOfEntris.forEach(entry => {
+            const { key, value } = entry
+            storage[key] = value
+          })
+          return this.updateState(storage)
         },
         remove: key => {
-          const state = this.state.storage
-          delete state[key]
-          return this.updateState(state)
+          const { storage } = this.state
+          delete storage[key]
+          return this.updateState(storage)
         },
         getState: () => {
           return Object.assign({}, this.state.storage)

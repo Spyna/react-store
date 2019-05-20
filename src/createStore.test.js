@@ -6,12 +6,12 @@ import Adapter from 'enzyme-adapter-react-16'
 
 class TestCreateStoreComponent extends React.Component {
   render() {
-    return <div id='test-div'>{this.props.children}</div>
+    return <div id="test-div">{this.props.children}</div>
   }
 }
 class TestWithStoreComponent extends React.Component {
   render() {
-    return <div id='test-div-withStore'>hello</div>
+    return <div id="test-div-withStore">hello</div>
   }
 }
 
@@ -201,9 +201,10 @@ describe('Use the store', () => {
 
     const key = 'key '
     const value = 'value'
-    const set = store.set(key, value)
-    expect(set).toBeUndefined()
+    const setPromise = store.set(key, value)
+    expect(setPromise).toBeUndefined()
   })
+
   it('method set should return a promise', () => {
     const App = createStore(TestCreateStoreComponent, {}, { promisify: true })
     const WithStore = withStore(TestWithStoreComponent)
@@ -219,7 +220,32 @@ describe('Use the store', () => {
 
     const key = 'key '
     const value = 'value'
-    const set = store.set(key, value)
-    expect(set).toBeInstanceOf(Promise)
+    const setPromise = store.set(key, value)
+    expect(setPromise).toBeInstanceOf(Promise)
+  })
+
+  it('method set multiple values at once', async () => {
+    const App = createStore(TestCreateStoreComponent, {}, { promisify: true })
+    const WithStore = withStore(TestWithStoreComponent)
+    const wrapper = mount(
+      <App>
+        <WithStore />
+      </App>
+    )
+
+    const renderComponent = wrapper.find(TestWithStoreComponent).first()
+    expect(renderComponent.exists()).toBe(true)
+    const store = renderComponent.prop('store')
+
+    const key = 'key 1'
+    const value = 'value'
+
+    const key2 = 'key 2'
+    const value2 = 'value 2'
+
+    await store.setAll({ key, value }, { key: key2, value: value2 })
+
+    expect(store.getState()[key]).toBe(value)
+    expect(store.getState()[key2]).toBe(value2)
   })
 })

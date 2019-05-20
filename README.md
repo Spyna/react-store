@@ -30,7 +30,7 @@ npm install --save @spyna/react-store
 
 ### Create store
 
-```jsx
+```JS
 // App.js
 import React, { Component } from 'react'
 import { createStore } from '@spyna/react-store'
@@ -67,7 +67,7 @@ You can pass the *initial store value* as the second argumento of the function `
 
 #### Using `props.store.get('key')`
 
-```jsx
+```JS
 // MyComponent
 import React, { Component } from 'react'
 import { withStore } from '@spyna/react-store'
@@ -87,7 +87,7 @@ const ConnectedComponent = withStore(MyComponent);
 
 You can pass an array of *keys* to the function `withStore` to spread the keys of the store into the Component props
 
-```jsx
+```JS
 // MyComponent
 import React, { Component } from 'react'
 import { withStore } from '@spyna/react-store'
@@ -106,14 +106,14 @@ const ConnectedComponent = withStore(MyComponent, ['amount']);
 
 ### Set data in store 
 
-```jsx
+```JS
 this.props.store.set('a_key', 'a value')
 this.props.store.set('another_key', {name: 'another value'})
 ```
 
 ### Read data from the store
 
-```jsx
+```JS
 const a_key  = this.props.store.get('a_key')
 
 const defaultValue = {name : 'an optional default value if the key is not found'}
@@ -122,14 +122,32 @@ const another_key = this.props.store.get('another_key', defaultValue)
 
 ### Remove data from the store 
 
-```jsx
+```JS
 this.props.store.remove('a_key', 'a value')
 ```
 
 ### Get all data from the store
 
-```jsx
+```JS
 const store = this.props.store.getState()
+```
+
+
+### Set multiple data in one shot
+
+Using an object with the `key` and the `value` properties: `{key: 'key', value: theValue}`
+
+```JS
+const firstObject = {
+  key: 'key-one',
+  value: 'value-one'
+}
+const secondObject = {
+  key: 'key-two',
+  value: 'value-two'
+}
+this.props.store.setAll(firstObject, secondObject)
+
 ```
 
 ## Configuration
@@ -141,7 +159,7 @@ When creating the store with `createStore` you can pass some options:
 
 ### initial value 
 
-```jsx
+```JS
 const initialValue = {
   someKey : 'some value',
   anotherKey : {
@@ -154,7 +172,7 @@ export default createStore(App, initialValue)
 
 ### Default config
 
-```jsx
+```JS
 const config = {
   promisify: true
 }
