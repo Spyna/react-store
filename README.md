@@ -166,7 +166,7 @@ const initialValue = JSON.read(localStorage.getItem(MY_STORE) || "{}");
 
 const config = {
   listener: (state) => {
-    localStorage.setItem(JSON.stringify(MY_STORE))
+    localStorage.setItem(MY_STORE, JSON.stringify(state))
   }
 }
 
