@@ -2,6 +2,7 @@ import React from 'react'
 import { storeHandler } from './storeProxyHandler'
 import defaultConfig from './defaultConfig'
 import StoreContext from './StoreContext'
+import isHermesEngine from './checkJSEngine'
 
 /**
  * @param {ReactElement} WrappedComponent the component to connect with the store
@@ -62,7 +63,12 @@ const createStore = (
           return Object.assign({}, this.state.storage)
         }
       }
-      store = new Proxy(store, storeHandler)
+
+      // Proxy is not available at Hermes Engine used in React Native
+      if (!isHermesEngine()) {
+        store = new Proxy(store, storeHandler)
+      }
+
       this.setState({ store })
     }
 
