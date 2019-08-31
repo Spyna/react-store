@@ -15,7 +15,7 @@ const createStore = (
 ) => {
   const userConfig = Object.freeze({ ...defaultConfig, ...config })
 
-  const { listener } = userConfig
+  const { listener, proxyStore } = userConfig
 
   return class extends React.Component {
     constructor(props) {
@@ -62,7 +62,9 @@ const createStore = (
           return Object.assign({}, this.state.storage)
         }
       }
-      store = new Proxy(store, storeHandler)
+      if (proxyStore) {
+        store = new Proxy(store, storeHandler)
+      }
       this.setState({ store })
     }
 

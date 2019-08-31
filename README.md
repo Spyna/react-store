@@ -198,7 +198,8 @@ export default createStore(App, initialValue)
 
 ```JS
 const config = {
-  listener: (state) => {}
+  listener: (state) => {},
+  proxyStore: true;
 }
 export default createStore(App, {}, config)
 
@@ -207,6 +208,8 @@ export default createStore(App, {}, config)
 | Property | Type | default | meaning |
 | --- | --- | --- |
 | listener | function | `(state) => {}` does nothing | A callback function that is called after the methods: `set`, `setAll`, `remove`. The function accepts the new `store` value as parameter. |
+| proxyStore | boolean | Whether or not to use a `Proxy` to lock the store object. In some environment the `Proxy` object is not available, for example when using [Facebook hermes](https://hermesengine.dev/), in these cases you can set this property to `false`. Keep in mid that if you set this option to false, `store` will not be protected against modifications. |
+
 
 ## Contributing
 
