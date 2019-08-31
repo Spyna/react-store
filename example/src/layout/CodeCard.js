@@ -36,9 +36,7 @@ class Card extends React.Component {
     let { showCode, code } = this.state
     if (!code) {
       const response = await axios.get(
-        `https://raw.githubusercontent.com/Spyna/react-store/master/example/${
-          this.props.source
-        }`
+        `https://raw.githubusercontent.com/Spyna/react-store/master/example/${this.props.source}`
       )
       code = response.data
     }
