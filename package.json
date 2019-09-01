@@ -1,6 +1,6 @@
 {
   "name": "@spyna/react-store",
-  "version": "1.3.0",
+  "version": "1.4.0",
   "description": "React app state management that uses a global storage",
   "author": "Spyna (https://github.com/Spyna)",
   "keyword": [
