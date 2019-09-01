@@ -4,14 +4,12 @@ import withStore from './withStore'
 import Enzyme, { mount } from 'enzyme'
 import Adapter from 'enzyme-adapter-react-16'
 
-class TestCreateStoreComponent extends React.Component {
-  render() {
-    return <div id='test-div'>{this.props.children}</div>
-  }
-}
+const TestCreateStoreComponent = ({ children }) => (
+  <div id="test-div">{children}</div>
+)
 class TestWithStoreComponent extends React.Component {
   render() {
-    return <div id='test-div-withStore'>hello</div>
+    return <div id="test-div-withStore">hello</div>
   }
 }
 
@@ -46,7 +44,29 @@ describe('Create Store', () => {
   })
 })
 
-describe('Freeze the store methods', () => {
+describe('Should Read the configurations', () => {
+  it('should not use a Proxy for the store when the config proxyStore is setted to false', () => {
+    const config = {
+      proxyStore: false
+    }
+    const App = createStore(TestCreateStoreComponent, {}, config)
+    const WithStore = withStore(TestWithStoreComponent)
+    const wrapper = mount(
+      <App>
+        <WithStore />
+      </App>
+    )
+
+    const renderComponent = wrapper.find(TestWithStoreComponent).first()
+    expect(renderComponent.exists()).toBe(true)
+    const store = renderComponent.prop('store')
+    store.get = () => 'test'
+
+    expect(store.get()).toBe('test')
+  })
+})
+
+describe('Should freeze the store methods when using a proxyStore configuration ', () => {
   it('should protect store methods from being modified', () => {
     const App = createStore(TestCreateStoreComponent)
     const WithStore = withStore(TestWithStoreComponent)
@@ -56,7 +76,12 @@ describe('Freeze the store methods', () => {
       </App>
     )
 
-    global.console = { error: jest.fn(), group: jest.fn(), groupEnd: jest.fn() }
+    global.console = {
+      warn: jest.fn(),
+      error: jest.fn(),
+      group: jest.fn(),
+      groupEnd: jest.fn()
+    }
 
     const renderComponent = wrapper.find(TestWithStoreComponent).first()
     expect(renderComponent.exists()).toBe(true)
@@ -80,6 +105,7 @@ describe('Freeze the store methods', () => {
       </App>
     )
     global.console = {
+      warn: jest.fn(),
       error: jest.fn(),
       group: jest.fn(),
       groupEnd: jest.fn()

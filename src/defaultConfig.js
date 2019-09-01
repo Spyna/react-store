@@ -1,3 +1,4 @@
 export default {
-  listener: () => {}
+  listener: () => {},
+  proxyStore: true
 }
