@@ -4,11 +4,9 @@ import withStore from './withStore'
 import Enzyme, { mount } from 'enzyme'
 import Adapter from 'enzyme-adapter-react-16'
 
-class TestCreateStoreComponent extends React.Component {
-  render() {
-    return <div id="test-div">{this.props.children}</div>
-  }
-}
+const TestCreateStoreComponent = ({ children }) => (
+  <div id="test-div">{children}</div>
+)
 class TestWithStoreComponent extends React.Component {
   render() {
     return <div id="test-div-withStore">hello</div>
@@ -78,7 +76,12 @@ describe('Should freeze the store methods when using a proxyStore configuration 
       </App>
     )
 
-    global.console = { error: jest.fn(), group: jest.fn(), groupEnd: jest.fn() }
+    global.console = {
+      warn: jest.fn(),
+      error: jest.fn(),
+      group: jest.fn(),
+      groupEnd: jest.fn()
+    }
 
     const renderComponent = wrapper.find(TestWithStoreComponent).first()
     expect(renderComponent.exists()).toBe(true)
@@ -102,6 +105,7 @@ describe('Should freeze the store methods when using a proxyStore configuration 
       </App>
     )
     global.console = {
+      warn: jest.fn(),
       error: jest.fn(),
       group: jest.fn(),
       groupEnd: jest.fn()
