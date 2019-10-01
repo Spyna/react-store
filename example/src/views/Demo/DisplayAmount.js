@@ -16,7 +16,7 @@ class DisplaystoreData extends Card {
           Amount, accessed using both:
           <ul>
             <li>
-              <code className="language-javascript">this.props.amount</code>
+              <code className="language-javascript">props.amount</code>
             </li>
             <li>
               <code className="language-javascript">store.get('amount')</code>

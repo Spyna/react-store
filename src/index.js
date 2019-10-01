@@ -1,4 +1,4 @@
-import createStore from './createStore'
+import createStore, { store } from './createStore'
 import withStore from './withStore'
 
-export { createStore, withStore }
+export { createStore, withStore, store }

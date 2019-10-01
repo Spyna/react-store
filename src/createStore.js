@@ -3,6 +3,7 @@ import { storeHandler } from './storeProxyHandler'
 import defaultConfig from './defaultConfig'
 import StoreContext from './StoreContext'
 
+let rawStore
 /**
  * @param {ReactElement} WrappedComponent the component to connect with the store
  * @param {Object} initialValue the initial store value or nothing
@@ -66,6 +67,7 @@ const createStore = (
         store = new Proxy(store, storeHandler)
       }
       this.setState({ store })
+      rawStore = store
     }
 
     render() {
@@ -79,3 +81,5 @@ const createStore = (
 }
 
 export default createStore
+
+export {rawStore as store}
